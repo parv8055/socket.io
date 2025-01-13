@@ -8,7 +8,7 @@ const socket = io(URL,{
         userId: 'parv choudhary',
         token: 'qwerty12345678',
       },
-      autoConnect: false
+      // autoConnect: false
 });
 
 export default socket;

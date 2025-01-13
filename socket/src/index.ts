@@ -16,21 +16,27 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    // const count = io.engine.clientsCount;
     //tells the number of conected clients
+    // const count = io.engine.clientsCount;
     // console.log(count);
-    console.log('a user connected',socket.id);
-    // console.log(socket);
-    console.log(socket.handshake)
+
+
+    console.log(`User_connected ${socket.id}`);
+
+    //disconncted event
     socket.on('disconnect', () => {
         console.log('user disconnected',socket.id);
     });
 
+    //chat message event
     socket.on('chat message', (msg,callback) => {
         console.log('message: ' + msg);
-        callback("got it"); //used to send back a response to the client
+        callback("Got the message"); //used to send back a response to the client
         io.emit('chat message', msg);
     });
+
+
+    
 });
 
 httpServer.listen(8080, () => {
